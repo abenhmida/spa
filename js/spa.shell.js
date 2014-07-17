@@ -173,7 +173,7 @@ spa.shell = (function () {
         return false;
     };
 
-    onHashChange = function (event) {
+    onHashchange = function (event) {
         var
             anchor_map_previous = copyAnchorMap(),
             anchor_map_proposed,
@@ -236,6 +236,8 @@ spa.shell = (function () {
         $.uriAnchor.configModule({
             schema_map: configMap.anchor_schema_map
         });
+        spa.chat.configModule({});
+        spa.chat.initModule(jqueryMap.$chat);
         // Handle URI anchor change events.
         // This is done /after/ all feature modules are configured
         // and initialized, otherwise they will not be ready to handle
@@ -244,6 +246,7 @@ spa.shell = (function () {
         $(window)
             .bind('hashchange', onHashchange)
             .trigger('hashchange');
+
     };
 
     // End PUBLIC method /initModule/
